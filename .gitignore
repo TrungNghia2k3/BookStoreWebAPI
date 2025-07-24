@@ -1,0 +1,35 @@
+# IDE files (IntelliJ IDEA)
+.idea/
+*.iml
+
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Log files
+*.log
+logs/
+
+# Environment variables
+.env
+
+# Compiled code and build artifacts
+*.class
+*.jar
+*.war
+*.ear
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+Desktop.ini # Windows
+
+# Other common temporary files
+*.tmp
+*.bak
+*~
+
+# images and media
+images/
+audio/
+video/
