@@ -1,17 +1,5 @@
 package com.ntn.ecommerce.service;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.ntn.ecommerce.dto.request.CategoryRequest;
 import com.ntn.ecommerce.dto.response.CategoryResponse;
 import com.ntn.ecommerce.dto.response.PageResponse;
@@ -22,18 +10,30 @@ import com.ntn.ecommerce.mapper.CategoryMapper;
 import com.ntn.ecommerce.repository.CategoryRepository;
 import com.ntn.ecommerce.repository.ProductRepository;
 import com.ntn.ecommerce.utilities.ImageUtilities;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.ntn.ecommerce.constant.Cloudinary.CLOUDINARY_IMAGE_CATEGORY_URL;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
 public class CategoryService {
-    private static final String BASE_IMAGE_URL = "http://localhost:8080/api/images/category/";
+    private static final String BASE_IMAGE_URL = CLOUDINARY_IMAGE_CATEGORY_URL;
     CategoryRepository categoryRepository;
     ProductRepository productRepository;
     CategoryMapper categoryMapper;

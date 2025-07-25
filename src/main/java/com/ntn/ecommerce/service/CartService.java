@@ -1,12 +1,5 @@
 package com.ntn.ecommerce.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.ntn.ecommerce.constant.CartStatus;
 import com.ntn.ecommerce.dto.request.CartProductRequest;
 import com.ntn.ecommerce.dto.response.CartProductResponse;
@@ -23,18 +16,25 @@ import com.ntn.ecommerce.repository.CartProductRepository;
 import com.ntn.ecommerce.repository.CartRepository;
 import com.ntn.ecommerce.repository.ProductRepository;
 import com.ntn.ecommerce.repository.UserRepository;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.ntn.ecommerce.constant.Cloudinary.CLOUDINARY_IMAGE_PRODUCT_URL;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CartService {
-    private static final String BASE_IMAGE_URL = "http://localhost:8080/api/images/product/";
+    private static final String BASE_IMAGE_URL = CLOUDINARY_IMAGE_PRODUCT_URL;
     CartRepository cartRepository;
     CartProductRepository cartProductRepository;
     ProductRepository productRepository;
