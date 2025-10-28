@@ -2,10 +2,9 @@ package com.ntn.ecommerce.service;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,6 @@ import lombok.extern.slf4j.Slf4j;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TransactionService {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
     UserRepository userRepository;
     TransactionRepository transactionRepository;
@@ -81,10 +79,6 @@ public class TransactionService {
         }
         response.put("transactionStatus", transactionStatus);
 
-        // Parsing the pay date from the request parameters
-        String payDateString = requestParams.get("vnp_PayDate");
-        LocalDateTime transactionDate = LocalDateTime.parse(payDateString, DATE_TIME_FORMATTER);
-
         // Extracting orderId from vnp_OrderInfo
         String orderInfo = requestParams.get("vnp_OrderInfo");
         String orderId = extractOrderIdFromOrderInfo(orderInfo);
@@ -100,6 +94,17 @@ public class TransactionService {
         Transaction transaction = vnPayCallbackMapper.toTransaction(callbackResponse);
         transaction.setUser(user);
         transaction.setOrder(order);
+
+        // Check if transaction already exists to prevent duplicate entry
+        String vnpTransactionNo = transaction.getVnp_TransactionNo();
+        if (vnpTransactionNo != null && !vnpTransactionNo.isEmpty()) {
+            Optional<Transaction> existingTransaction = transactionRepository.findByTransactionNo(vnpTransactionNo);
+            if (existingTransaction.isPresent()) {
+                log.warn("Transaction with vnp_TransactionNo {} already exists. Skipping save.", vnpTransactionNo);
+                // Return the callback response without saving duplicate
+                return callbackResponse;
+            }
+        }
 
         // Save the transaction to the database
         transactionRepository.save(transaction);

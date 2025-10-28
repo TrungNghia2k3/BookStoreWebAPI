@@ -45,10 +45,6 @@ public class OrderService {
     OrderMapper orderMapper;
     VNPAYConfig vnPayConfig;
 
-    @NonFinal
-    @Value("${payment.vnPay.secretKey}")
-    protected String secretKey;
-
     public OrderPaymentResponse createOrder(HttpServletRequest servletRequestRequest, CreateOrderRequest request) {
         String userId = request.getUserId();
         List<CartProductRequest> selectedProducts = request.getSelectedProducts();

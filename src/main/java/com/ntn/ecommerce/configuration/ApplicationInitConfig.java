@@ -28,11 +28,8 @@ public class ApplicationInitConfig {
 
     PasswordEncoder passwordEncoder;
 
-    @NonFinal
-    static final String ADMIN_USER_NAME = "admin";
-
-    @NonFinal
-    static final String ADMIN_PASSWORD = "admin";
+    String ADMIN_USER_NAME = "admin";
+    String ADMIN_PASSWORD = "admin";
 
     @Bean
     @ConditionalOnProperty(

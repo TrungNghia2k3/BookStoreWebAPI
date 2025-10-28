@@ -23,11 +23,16 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}
+
 outbound:
   identity:
     client-id: ${CLIENT_ID}
     client-secret: ${CLIENT_SECRET}
-    redirect-uri: "https://book-store-web-app-seven.vercel.app/authenticate"
+    redirect-uri: "http://localhost:3000/authenticate"
 
 jwt:
   signerKey: ${SIGNING_KEY}
@@ -42,7 +47,7 @@ payment:
     url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
     tmnCode: "A3JJWFNP"
     secretKey: ${SECRET_KEY}
-    returnUrl: "https://book-store-web-app-seven.vercel.app/payment-callback"
+    returnUrl: "http://localhost:3000/payment-callback"
     version: "2.1.0"
     command: "pay"
     orderType: "other"

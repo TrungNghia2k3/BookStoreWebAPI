@@ -41,13 +41,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationService {
-    @NonFinal
-    protected final String GRANT_TYPE = "authorization_code";
-
     UserRepository userRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
     OutboundIdentityClient outboundIdentityClient;
     OutboundUserClient outboundUserClient;
+
+    @NonFinal
+    protected final String GRANT_TYPE = "authorization_code";
 
     @NonFinal
     @Value("${jwt.signerKey}")
