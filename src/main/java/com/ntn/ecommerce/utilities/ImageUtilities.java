@@ -2,12 +2,13 @@ package com.ntn.ecommerce.utilities;
 
 import java.io.IOException;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 @Component
 public class ImageUtilities {
@@ -34,12 +35,14 @@ public class ImageUtilities {
         try {
             // Upload file to Cloudinary - use filename without extension as public_id
             // Cloudinary will automatically append the correct extension
-            cloudinary.uploader().upload(multipartFile.getBytes(),
-                    ObjectUtils.asMap(
-                            "folder", folder,
-                            "public_id", uniqueFileNameWithoutExtension,
-                            "resource_type", "auto"
-                    ));
+            cloudinary
+                    .uploader()
+                    .upload(
+                            multipartFile.getBytes(),
+                            ObjectUtils.asMap(
+                                    "folder", folder,
+                                    "public_id", uniqueFileNameWithoutExtension,
+                                    "resource_type", "auto"));
 
             return uniqueFileName;
         } catch (IOException e) {

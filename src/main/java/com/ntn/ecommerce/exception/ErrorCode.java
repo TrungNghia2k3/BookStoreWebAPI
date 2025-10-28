@@ -36,7 +36,8 @@ public enum ErrorCode {
     EXISTED_PERMISSION(1019, "Permission existed", HttpStatus.BAD_REQUEST),
     EXISTED_ROLE(1020, "Role existed", HttpStatus.BAD_REQUEST),
     PERMISSION_NOT_FOUND(1021, "Permission not found", HttpStatus.BAD_REQUEST),
-    FAILED_DELETE_PERMISSION(1022, "Cannot delete permission as it is assigned to one or more roles", HttpStatus.BAD_REQUEST),
+    FAILED_DELETE_PERMISSION(
+            1022, "Cannot delete permission as it is assigned to one or more roles", HttpStatus.BAD_REQUEST),
     CATEGORY_EXISTED(1023, "Category existed", HttpStatus.BAD_REQUEST),
     PRODUCT_NOT_FOUND(1024, "Product not found", HttpStatus.BAD_REQUEST),
     REQUIRED_IMAGE(1025, "Image is required", HttpStatus.BAD_REQUEST),
@@ -67,9 +68,13 @@ public enum ErrorCode {
     USER_HAS_NOT_PURCHASE(1040, "User has not purchased this product", HttpStatus.BAD_REQUEST),
     COMMENT_NOT_FOUND(1041, "Comment not found", HttpStatus.BAD_REQUEST),
     USER_NOT_AUTHORIZED(1042, "User not authorized", HttpStatus.BAD_REQUEST),
-    PRODUCT_ALREADY_EXISTS(1042, "The product already exists with. Please check the title or isbn10 or isbn13 again", HttpStatus.BAD_REQUEST),
+    PRODUCT_ALREADY_EXISTS(
+            1042,
+            "The product already exists with. Please check the title or isbn10 or isbn13 again",
+            HttpStatus.BAD_REQUEST),
     CURRENT_PASSWORD_INCORRECT(1043, "Current password is incorrect", HttpStatus.BAD_REQUEST),
-    USER_ALREADY_COMMENTED_TODAY(1044, "You can only post one comment per product once per day", HttpStatus.BAD_REQUEST),
+    USER_ALREADY_COMMENTED_TODAY(
+            1044, "You can only post one comment per product once per day", HttpStatus.BAD_REQUEST),
     MANUFACTURE_PRODUCT_NOT_FOUND(1045, "Manufacture product not found", HttpStatus.BAD_REQUEST),
     PRODUCT_MISMATCH(1046, "Product mismatch", HttpStatus.BAD_REQUEST),
     USER_NOT_COMMENT(1047, "User comment is required before adding an admin response.", HttpStatus.BAD_REQUEST);
