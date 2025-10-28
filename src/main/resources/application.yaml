@@ -32,7 +32,7 @@ outbound:
   identity:
     client-id: ${CLIENT_ID}
     client-secret: ${CLIENT_SECRET}
-    redirect-uri: "http://localhost:3000/authenticate"
+    redirect-uri: "https://book-store-web-app-seven.vercel.app/authenticate"
 
 jwt:
   signerKey: ${SIGNING_KEY}
@@ -46,8 +46,8 @@ payment:
   vnPay:
     url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
     tmnCode: "A3JJWFNP"
-    secretKey: ${SECRET_KEY}
-    returnUrl: "http://localhost:3000/payment-callback"
+    secretKey: ${VNPAY_SECRET_KEY}
+    returnUrl: "https://book-store-web-app-seven.vercel.app/payment-callback"
     version: "2.1.0"
     command: "pay"
     orderType: "other"
